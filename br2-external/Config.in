@@ -1,3 +1,1 @@
-menu "GT7 external options"
-    source "package/gt7-simdash/Config.in"
-endmenu
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/gt7-simdash/Config.in"
