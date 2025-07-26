@@ -15,7 +15,8 @@ BR2_PACKAGE_PYTHON3_PIP=y
 # RPi 4 firmware, boot partition size, and config.txt
 BR2_PACKAGE_RPI_FIRMWARE=y
 BR2_PACKAGE_RPI_FIRMWARE_CONFIG_FILE="board/raspberrypi4/config.txt"
-BR2_TARGET_RPI_BOOT_PARTITION_SIZE=256
+BR2_ROOTFS_POST_BUILD_SCRIPT="board/raspberrypi4/post_build.sh"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="board/raspberrypi4/post_image.sh"
 
 # Kernel and kernel fragment for DSI/LCD/touch etc.
 BR2_LINUX_KERNEL=y
@@ -50,5 +51,5 @@ BR2_PACKAGE_GIT=y
 
 # gt7-simdash (external BR2 tree)
 BR2_EXTERNAL=../br2-external
-BR2_PACKAGE_GT7_SIMDASH=y
+BR2_PACKAGE_GT7_SIMDASH=n
 
