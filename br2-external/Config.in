@@ -1,2 +1,3 @@
-source "$BR2_EXTERNAL_BR2_EXTERNAL_PATH/package/gt7-simdash/Config.in"
-
+menu "GT7 external options"
+    source "$BR2_EXTERNAL_BR2_EXTERNAL_GT7_SIMDASH_PATH/package/gt7-simdash/Config.in"
+endmenu
