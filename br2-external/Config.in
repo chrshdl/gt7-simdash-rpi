@@ -1,0 +1,2 @@
+source "$BR2_EXTERNAL_BR2_EXTERNAL_PATH/package/gt7-simdash/Config.in"
+
