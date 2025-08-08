@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_GT7_SIMDASH
+    bool "python-gt7-simdash"
+    help
+      Gran Turismo 7 Instrument Cluster (gt7-simdash)
+      https://github.com/chrshdl/gt7-simdash

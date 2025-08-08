@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PYTHON_MARSHMALLOW_DATACLASS
+	bool "python-marshmallow-dataclass"
+	select BR2_PACKAGE_PYTHON3
+	help
+	  Automatic generation of marshmallow schemas from dataclasses.
