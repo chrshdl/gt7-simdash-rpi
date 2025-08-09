@@ -1,16 +1,20 @@
 --- a/buildconfig/config_unix.py
 +++ b/buildconfig/config_unix.py
-@@ class DependencyProg:
--            if self.name == 'SDL':
--                inc = '-I' + '/usr/X11R6/include'
--                self.cflags = inc + ' ' + self.cflags
-+            if self.name == 'SDL':
-+                # On Buildroot cross‑compilation, avoid injecting the host X11R6 include path.
-+                pass
-
-@@ def main(auto_config=False):
--    origincdirs = ['/include', '/include/SDL2']
--    origlibdirs = ['/lib', '/lib64', '/X11R6/lib']
-+    # Do not search host X11R6 directories when cross‑compiling.
-+    origincdirs = ['/include', '/include/SDL2']
-+    origlibdirs = ['/lib', '/lib64']
+@@ -54,7 +54,7 @@ class DependencyProg:
+                      if f[:2] in ('-l', '-D', '-I', '-L'):
+                          self.cflags += f + ' '
+                      elif f[:3] == '-Wl':
+                          self.cflags += '-Xlinker ' + f + ' '
+-                if self.name == 'SDL':
+-                    inc = '-I' + '/usr/X11R6/include'
+-                    self.cflags = inc + ' ' + self.cflags
++                if self.name == 'SDL':
++                    # On Buildroot cross-compilation, avoid injecting the host X11R6 include path.
++                    pass
+@@ -147,3 +147,4 @@ def main(auto_config=False):
+          #these get prefixes with '/usr' and '/usr/local' or the $LOCALBASE
+-        origincdirs = ['/include', '/include/SDL2']
+-        origlibdirs = ['/lib', '/lib64', '/X11R6/lib']
++        # Do not search host X11R6 directories when cross-compiling.
++        origincdirs = ['/include', '/include/SDL2']
++        origlibdirs = ['/lib', '/lib64']
