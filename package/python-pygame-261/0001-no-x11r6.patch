@@ -1,0 +1,16 @@
+--- a/buildconfig/config_unix.py
++++ b/buildconfig/config_unix.py
+@@ class DependencyProg:
+-            if self.name == 'SDL':
+-                inc = '-I' + '/usr/X11R6/include'
+-                self.cflags = inc + ' ' + self.cflags
++            if self.name == 'SDL':
++                # On Buildroot cross‑compilation, avoid injecting the host X11R6 include path.
++                pass
+
+@@ def main(auto_config=False):
+-    origincdirs = ['/include', '/include/SDL2']
+-    origlibdirs = ['/lib', '/lib64', '/X11R6/lib']
++    # Do not search host X11R6 directories when cross‑compiling.
++    origincdirs = ['/include', '/include/SDL2']
++    origlibdirs = ['/lib', '/lib64']
