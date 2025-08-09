@@ -24,7 +24,7 @@ PYTHON_PYGAME_261_SETUP_TYPE = pep517
 # Build dependencies.  Pygame requires SDL2 and its image/font
 # extension libraries as well as libpng, libjpeg and freetype.  These
 # selections ensure the module is built with full multimedia support.
-PYTHON_PYGAME_261_DEPENDENCIES = PYTHON_PYGAME_261_DEPENDENCIES = sdl2 sdl2-image sdl2-ttf libpng jpeg freetype
+PYTHON_PYGAME_261_DEPENDENCIES = sdl2 sdl2-image sdl2-ttf libpng jpeg freetype
 
 # Evaluate the generic Python package build infrastructure.
 $(eval $(python-package))
