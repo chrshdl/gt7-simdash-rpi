@@ -22,6 +22,7 @@ ln -sf /run/systemd/resolve/resolv.conf "${TARGET_DIR}/etc/resolv.conf"
 
 # SAFETY: mask gt7-simdash so it doesn't start during rescue
 # (a symlink to /dev/null is how systemd masks units)
-if [ -e "${TARGET_DIR}/usr/lib/systemd/system/gt7-simdash.service" ]; then
-  ln -sf /dev/null "${TARGET_DIR}/etc/systemd/system/gt7-simdash.service"
-fi
+
+# if [ -e "${TARGET_DIR}/usr/lib/systemd/system/gt7-simdash.service" ]; then
+#   ln -sf /dev/null "${TARGET_DIR}/etc/systemd/system/gt7-simdash.service"
+# fi
