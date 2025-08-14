@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_GRANTURISMO
+    bool "python-granturismo"
+    select BR2_PACKAGE_PYTHON_SALSA20
+    select BR2_PACKAGE_PYTHON_MARSHMALLOW_DATACLASS
+    help
+      Gran Turismo 7 Telemetry Library
+      https://github.com/chrshdl/granturismo

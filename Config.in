@@ -1,0 +1,6 @@
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/brcmfmac-firmware/Config.in"
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/python-granturismo/Config.in"
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/python-gt7-simdash/Config.in"
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/python-salsa20/Config.in"
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/python-marshmallow-dataclass/Config.in"
+source "$BR2_EXTERNAL_GT7_SIMDASH_PATH/package/python-pygame-261/Config.in"

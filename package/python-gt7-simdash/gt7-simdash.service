@@ -1,0 +1,17 @@
+[Unit]
+Description=GT7-simdash
+After=systemd-udevd.service multi-user.target
+Wants=systemd-udevd.service
+
+[Service]
+Type=simple
+Environment=SDL_VIDEODRIVER=kmsdrm
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/gt7-simdash
+Restart=always
+RestartSec=2
+# Optional working dir if you want screenshots saved there
+#WorkingDirectory=/usr/share/gt7-simdash
+
+[Install]
+WantedBy=multi-user.target
