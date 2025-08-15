@@ -1,13 +1,11 @@
 ################################################################################
 #
-# python-pygame-261 (fork pin)
+# python-pygame-261
 #
 ################################################################################
 
-# Pin to your fork + commit
-PYTHON_PYGAME_261_VERSION = 2e62e87
-PYTHON_PYGAME_261_SITE = $(call github,chrshdl,pygame,$(PYTHON_PYGAME_261_VERSION))
-PYTHON_PYGAME_261_SOURCE = pygame-$(PYTHON_PYGAME_261_VERSION).tar.gz
+PYTHON_PYGAME_261_VERSION = 79807da84c9bacf8df5a177763e14c924e3b15e2
+PYTHON_PYGAME_261_SITE = $(call github,pygame,pygame,$(PYTHON_PYGAME_261_VERSION))
 
 PYTHON_PYGAME_261_LICENSE = LGPL-2.1+
 PYTHON_PYGAME_261_LICENSE_FILES = LGPL
