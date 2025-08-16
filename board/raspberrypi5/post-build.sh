@@ -1,28 +1,45 @@
 #!/bin/sh
 set -eu
 
+T="${TARGET_DIR}"
+
 # Ensure target dirs exist
-mkdir -p "${TARGET_DIR}/etc/systemd/system/multi-user.target.wants"
-mkdir -p "${TARGET_DIR}/etc/systemd/system/getty.target.wants"
+mkdir -p \
+  "$T/etc/systemd/system/multi-user.target.wants" \
+  "$T/etc/systemd/system/getty.target.wants" \
+  "$T/etc/wpa_supplicant"
+
+# Find systemd unit dir in the image
+UNITDIR=""
+for d in /lib/systemd/system /usr/lib/systemd/system; do
+  if [ -e "$T$d/systemd-networkd.service" ]; then UNITDIR="$d"; break; fi
+done
+[ -n "$UNITDIR" ] || { echo "ERROR: systemd unit dir not found in target"; exit 1; }
 
 # Force a login prompt on tty1
-ln -sf /usr/lib/systemd/system/getty@.service \
-  "${TARGET_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service"
+if [ -e "$T$UNITDIR/getty@.service" ]; then
+  ln -snf "$UNITDIR/getty@.service" \
+    "$T/etc/systemd/system/getty.target.wants/getty@tty1.service"
+fi
 
-# Enable network stack
-ln -sf /usr/lib/systemd/system/wpa_supplicant@.service \
-  "${TARGET_DIR}/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service"
-ln -sf /usr/lib/systemd/system/systemd-networkd.service \
-  "${TARGET_DIR}/etc/systemd/system/multi-user.target.wants/systemd-networkd.service"
-ln -sf /usr/lib/systemd/system/systemd-resolved.service \
-  "${TARGET_DIR}/etc/systemd/system/multi-user.target.wants/systemd-resolved.service"
+# Mask the generic unit
+ln -snf /dev/null "$T/etc/systemd/system/wpa_supplicant.service"
+rm -f "$T/etc/systemd/system/multi-user.target.wants/wpa_supplicant.service" 2>/dev/null || true
+
+# Enable the correct per-interface instance
+ln -snf "$UNITDIR/wpa_supplicant@.service" \
+  "$T/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service"
+
+# Network stack
+ln -snf "$UNITDIR/systemd-networkd.service" \
+  "$T/etc/systemd/system/multi-user.target.wants/systemd-networkd.service"
+ln -snf "$UNITDIR/systemd-resolved.service" \
+  "$T/etc/systemd/system/multi-user.target.wants/systemd-resolved.service"
 
 # Use resolved's resolv.conf
-ln -sf /run/systemd/resolve/resolv.conf "${TARGET_DIR}/etc/resolv.conf"
+ln -snf /run/systemd/resolve/resolv.conf "$T/etc/resolv.conf"
 
-# SAFETY: mask gt7-simdash so it doesn't start during rescue
-# (a symlink to /dev/null is how systemd masks units)
-
+# FOR DEBUG: mask gt7-simdash so it doesn't start
 # if [ -e "${TARGET_DIR}/usr/lib/systemd/system/gt7-simdash.service" ]; then
 #   ln -sf /dev/null "${TARGET_DIR}/etc/systemd/system/gt7-simdash.service"
 # fi
