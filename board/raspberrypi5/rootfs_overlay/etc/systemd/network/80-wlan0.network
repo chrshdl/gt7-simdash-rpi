@@ -4,10 +4,6 @@ Name=wlan0
 [Network]
 DHCP=yes
 IPv6AcceptRA=yes
-WPA=wpa_supplicant
 
 [DHCP]
 UseDNS=yes
-
-[Link]
-RequiredForOnline=yes
