@@ -1,7 +1,10 @@
 [Unit]
 Description=Copy Wi-Fi config from /boot into /etc/wpa_supplicant
-After=local-fs.target
+Requires=boot.mount
+After=boot.mount local-fs.target
 Before=wpa_supplicant@wlan0.service
+ConditionPathExists=/boot/wifi.conf
+ConditionPathExists=!/var/lib/wifi-config-installed
 
 [Service]
 Type=oneshot

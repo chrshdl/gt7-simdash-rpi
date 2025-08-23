@@ -11,7 +11,7 @@ gpu_mem=128
 dtoverlay=vc4-kms-v3d
 
 # Enable Waveshare 7" DSI LCD (C)
-dtoverlay=vc4-kms-dsi-waveshare-panel,7_0_inchC,i2c1,rotation=180
+dtoverlay=vc4-kms-dsi-waveshare-panel,7_0_inchC,i2c1
 
 # Some Waveshare panels work best with 2 framebuffers (helps with tearing)
 max_framebuffers=2
