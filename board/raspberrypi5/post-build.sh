@@ -26,7 +26,7 @@ if [ -e "$T$UNITDIR/getty@.service" ]; then
     "$T/etc/systemd/system/getty.target.wants/getty@tty1.service"
 fi
 
-# Mask the generic unit
+# Mask the generic wpa_supplicant unit so only the @wlan0 instance runs
 ln -snf /dev/null "$T/etc/systemd/system/wpa_supplicant.service"
 rm -f "$T/etc/systemd/system/multi-user.target.wants/wpa_supplicant.service" 2>/dev/null || true
 
