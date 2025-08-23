@@ -6,9 +6,10 @@ T="${TARGET_DIR}"
 # Ensure target dirs exist
 mkdir -p \
   "$T/etc/systemd/system/multi-user.target.wants" \
+  "$T/etc/systemd/system/getty.target.wants" \
   "$T/etc/wpa_supplicant"
 
-# Make sure the Wi-Fi installer is executable (keeps things robust)
+# Make sure the Wi-Fi installer is executable
 if [ -e "$T/usr/local/bin/install-wifi-config.sh" ]; then
   chmod 0755 "$T/usr/local/bin/install-wifi-config.sh"
 fi
