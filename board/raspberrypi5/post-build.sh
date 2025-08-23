@@ -26,6 +26,10 @@ fi
 ln -snf /dev/null "$T/etc/systemd/system/wpa_supplicant.service"
 rm -f "$T/etc/systemd/system/multi-user.target.wants/wpa_supplicant.service" 2>/dev/null || true
 
+# Wifi credentials
+ln -snf /etc/systemd/system/wifi-setup.service \
+    "${TARGET_DIR}/etc/systemd/system/multi-user.target.wants/wifi-setup.service"
+
 # Enable the correct per-interface instance
 ln -snf "$UNITDIR/wpa_supplicant@.service" \
   "$T/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service"

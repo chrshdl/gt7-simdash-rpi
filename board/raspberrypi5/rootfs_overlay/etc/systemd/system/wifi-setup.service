@@ -1,0 +1,11 @@
+[Unit]
+Description=Copy Wi-Fi config from /boot into /etc/wpa_supplicant
+After=local-fs.target
+Before=wpa_supplicant@wlan0.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/install-wifi-config.sh
+
+[Install]
+WantedBy=multi-user.target
