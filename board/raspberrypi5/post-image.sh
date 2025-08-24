@@ -8,7 +8,8 @@ GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
 # Copy wifi.conf template into BINARIES_DIR so genimage can include it
-cp -f "${BOARD_DIR}/wifi.conf" "${BINARIES_DIR}/wifi.conf"
+cp -f "${BOARD_DIR}/wpa_supplicant-wlan0.conf" \
+      "${BINARIES_DIR}/wpa_supplicant-wlan0.conf"
 
 # Pass an empty rootpath. genimage makes a full copy of the given rootpath to
 # ${GENIMAGE_TMP}/root so passing TARGET_DIR would be a waste of time and disk
