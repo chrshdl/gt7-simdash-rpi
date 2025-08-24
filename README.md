@@ -31,14 +31,14 @@ This repository provides an external Buildroot tree to build a custom Linux imag
 Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) or [balenaEtcher](https://www.balena.io/etcher/) to flash the image to your SD card. In the `Operating System` section scroll all the way down and select `Use Custom`. 
 
 ### Setup WiFi
-After flashing insert the microSD card into your computer and open the `boot` partition. Then edit the file `wpa_supplicant.conf` located in folder `etc` and replace
+After flashing insert the microSD card into your computer and open the `boot` partition and edit the file `wpa_supplicant.conf`. Then replace
 
 ```ini
 ssid="YOUR_WIFI_SSID"
 psk="YOUR_WIFI_PASSWORD"
 ```
 
-with your actual WiFi name and password. Save the changes, eject the card and insert it into your Raspberry Pi. Now boot your device and it will connect to WiFi automatically on first startup.
+with your actual WiFi name and password. Remember to keep the quotes for ssid="" and psk="" OR remove the quotes for psk if you use a 64-hex password. Save the changes, eject the card and insert it into your Raspberry Pi. Now boot your device and it will connect to WiFi automatically on first startup.
 
 ## TODOs
 - [ ] vc4
